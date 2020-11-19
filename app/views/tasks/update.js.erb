@@ -1,0 +1,10 @@
+ $("#<%=@task.id%>").toggleClass('task-check');
+
+
+<% if @task.check == true %>
+  $("#<%=@task.id%>").prependTo( $('.tasks_done') );
+  task.check = false;
+<% elsif @task.check == false %>
+  $("#<%=@task.id%>").prependTo( $('.tasks_to_do') );
+  task.check = true;
+<% end %>

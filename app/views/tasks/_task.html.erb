@@ -1,0 +1,7 @@
+<tr id="<%=task.id%>" class="<%=is_checked?(task)%>">
+  <th scope="row">
+    <%= check_box_tag :check, true, task.check , data: {  remote: true, url: task_path(task.id), params: { id: task.id, check: !task.check}.to_param, method: "put" } %>
+  </th>
+  <td><b><%= task.title %></b> - <%= task.description %></td>
+  <td><%= link_to '', task, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class:"fas fa-trash-alt" %></td>
+</tr>

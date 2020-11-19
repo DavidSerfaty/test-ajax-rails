@@ -1,0 +1,92 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+
+  <h1>Tasks</h1>
+  <div class="">
+    <%= form_tag(tasks_path, method: :post, class: "form", remote: true) do %>
+      <label for="title">Title
+      <%= text_field_tag  :title %>
+      <label for="description">description
+      <%= text_field_tag  :description %>
+      <%= submit_tag 'create', :name => 'commit'%>
+    <% end %>
+  </div>
+
+  <div class="row">
+
+    <div class="col">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">A faire</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <div class="list-group">
+          <tbody id="task-list" class="tasks_to_do" >
+          <% @tasks_to_do.each do |task| %>
+            <tr id="<%=task.id%>" class="<%=is_checked?(task)%>">
+              <th scope="row">
+                <%= check_box_tag :check, true, task.check , data: {  remote: true, url: task_path(task.id), params: { id: task.id, check: !task.check}.to_param, method: "put" } %>
+              </th>
+              <td><b><%= task.title %></b> - <%= task.description %></td>
+              <td><%= link_to '', task, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class:"fas fa-trash-alt" %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </div>
+      </table>
+    </div>
+
+
+    <div class="col">
+
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Fait</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <div class="list-group">
+          <tbody id="task-list" class="tasks_done" >
+          <% @tasks_done.each do |task| %>
+            <tr id="<%=task.id%>" class="<%=is_checked?(task)%>">
+              <th scope="row">
+                <%= check_box_tag :check, true, task.check , data: {  remote: true, url: task_path(task.id), params: { id: task.id, check: !task.check}.to_param, method: "put" } %>
+              </th>
+              <td><b><%= task.title %></b> - <%= task.description %></td>
+              <td><%= link_to '', task, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class:"fas fa-trash-alt" %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </div>
+      </table>
+
+
+
+
+    </div>
+
+  <br>
+
+
+</div>
+
+</div>
+
+
+<!-- <button type="button" class="btn btn-primary">
+<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+</svg>
+</button>
+<button type="button" class="btn btn-danger">
+<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+</svg>
+</button> -->

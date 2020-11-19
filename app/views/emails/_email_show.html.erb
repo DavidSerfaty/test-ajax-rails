@@ -1,0 +1,8 @@
+<div id="email-show" class="col-8 text-center mt-5 p-5">
+  <div class="email-<%= @email.id %>" >
+    <h1><%= email.objet%></h1>
+    <p><%= email.body%></p>
+    <%= link_to 'Marquer comme non lu', email_path(email.id), remote: true, class:"btn btn-secondary btn-sm" %>
+    <%= link_to 'Supprimer', email_path(email.id), method: :delete, remote: true, class:"btn btn-danger btn-sm" %>
+  </div>
+</div>

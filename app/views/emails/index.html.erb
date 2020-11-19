@@ -1,0 +1,34 @@
+<h1>Emails#index</h1>
+<p>Find me in app/views/emails/index.html.erb</p>
+
+<%= link_to 'Recevoir un email', emails_path, method: :post, remote: true, class:"btn btn-primary" %>
+<br>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Liste des emails</th>
+          </tr>
+        </thead>
+        <tbody id="email-list">
+          <% @emails.each do |email| %>
+          <tr class="email-<%= email.id %>">
+            <td scope="row">
+              <h3><%= email.objet%></h3>
+              <%= email.body.truncate(60) %><br><br>
+              <%= link_to 'Afficher email', email_path(email.id), remote: true, class:"btn btn-primary btn-sm" %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div id="email-show" class="col-8">
+      Aucun message
+    </div>
+  </div>
+</div>

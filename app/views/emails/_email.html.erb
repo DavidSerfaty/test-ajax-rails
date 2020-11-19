@@ -1,0 +1,7 @@
+<tr>
+  <td scope="row">
+    <h3><%= email.objet%></h3>
+    <%= email.body.truncate(60) %><br><br>
+    <%= link_to 'Afficher email', email_path(email.id), class:"btn btn-primary btn-sm" %>
+  </td>
+</tr>

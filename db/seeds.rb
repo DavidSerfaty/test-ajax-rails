@@ -5,6 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-5.times do
-  Book.create(author: Faker::Book.author, title: Faker::Book.title)
+# 5.times do
+#   Book.create(author: Faker::Book.author, title: Faker::Book.title)
+# end
+Email.destroy_all
+
+3.times do
+  Email.create(objet: Faker::Book.title, body: Faker::Lorem.paragraph_by_chars(number: 500, supplemental: false))
 end

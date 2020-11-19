@@ -1,7 +1,13 @@
-<tr>
+<tr class="email-<%= email.id %>">
   <td scope="row">
-    <h3><%= email.objet%></h3>
-    <%= email.body.truncate(60) %><br><br>
-    <%= link_to 'Afficher email', email_path(email.id), class:"btn btn-primary btn-sm" %>
+    <div class="row">
+      <div class="col-10">
+        <b><%= email.objet%></b>
+        <p class="mb-0"><%= email.body.truncate(60) %></p>
+      </div>
+      <div class="col-1 text-right">
+        <%= link_to '', email_path(email.id), remote: true, class:"#{read_icon?(email)} btn btn-primary btn-sm color-#{email.id}" %>
+      </div>
+    </div>
   </td>
 </tr>

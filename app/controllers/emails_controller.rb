@@ -1,10 +1,8 @@
 class EmailsController < ApplicationController
-  before_action :set_email, only: [:show, :destroy]
-
+  before_action :set_email, only: [:show, :update, :destroy]
 
   def index
-    @emails = Email.all
-    @email = Email.new
+    @emails = Email.all.order('created_at DESC')
   end
 
   def create
@@ -22,10 +20,22 @@ class EmailsController < ApplicationController
     end
   end
 
+  def update
+    if @email.read
+      @email.update(read: false)
+    else
+      @email.update(read: true)
+    end
+    respond_to do |format|
+      format.html { redirect_to email_path, notice: 'Email was successfully updated.' }
+      format.js { }
+    end
+  end
+
   def destroy
     @email.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Email was successfully destroyed.' }
       format.js { }
     end
   end
@@ -35,4 +45,5 @@ class EmailsController < ApplicationController
   def set_email
     @email = Email.find(params[:id])
   end
+
 end

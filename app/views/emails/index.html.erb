@@ -1,34 +1,37 @@
-<h1>Emails#index</h1>
-<p>Find me in app/views/emails/index.html.erb</p>
-
-<%= link_to 'Recevoir un email', emails_path, method: :post, remote: true, class:"btn btn-primary" %>
-<br>
-<br>
-
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col" style="overflow:scroll; height:700px;">
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Liste des emails</th>
+            <th scope="col">Liste des emails
+              <%= link_to 'Recevoir un email', emails_path, method: :post, remote: true, class:"btn btn-primary btn-sm" %>
+            </th>
           </tr>
         </thead>
         <tbody id="email-list">
           <% @emails.each do |email| %>
-          <tr class="email-<%= email.id %>">
+          <tr class="email-<%= email.id %> email-test">
             <td scope="row">
-              <h3><%= email.objet%></h3>
-              <%= email.body.truncate(60) %><br><br>
-              <%= link_to 'Afficher email', email_path(email.id), remote: true, class:"btn btn-primary btn-sm" %>
+              <div class="row">
+                <div class="col-10">
+                  <b><%= email.objet%></b>
+                  <p class="mb-0"><%= email.body.truncate(60) %></p>
+                </div>
+                <div class="col-1 text-right">
+                  <%= link_to '', email_path(email.id), remote: true, class:"#{read_icon?(email)} btn btn-primary btn-sm color-#{email.id}" %>
+                </div>
+              </div>
             </td>
           </tr>
           <% end %>
         </tbody>
       </table>
     </div>
-    <div id="email-show" class="col-8">
-      Aucun message
+    <div class="col-8 border">
+      <div id="email-show" >
+        Aucun message
+      </div>
     </div>
   </div>
 </div>

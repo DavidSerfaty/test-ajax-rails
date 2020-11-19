@@ -1,0 +1,8 @@
+
+<% if @email.read == false %>
+  $(".color-<%=@email.id%>").removeClass( "fas fa-envelope-open bg-secondary").addClass('fas fa-envelope bg-primary');
+  $(".text-read-<%=@email.id%>").text("Marquer comme lu").removeClass( "bg-secondary").addClass('bg-primary');
+<% elsif @email.read == true %>
+  $(".color-<%=@email.id%>").removeClass( "fas fa-envelope").addClass('fas fa-envelope-open bg-secondary');
+  $(".text-read-<%=@email.id%>").text("Marquer comme non lu").removeClass( "bg-primary").addClass('bg-secondary');
+<% end %>
